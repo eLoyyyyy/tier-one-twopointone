@@ -47,25 +47,34 @@ function _social_media(){
         <?php 
         $url = get_the_permalink(); 
         $url = urlencode(esc_url($url));?>
-        <a class="facebook btn" href="http://www.facebook.com/sharer.php?u=<?php echo $url; ?>" target='_blank'>
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-        </a>
-        <a class="twitter btn" target='_blank' href='https://twitter.com/share?url=<?php echo $url; ?>'>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-        </a>
-        <a class="linkedin btn" target='_blank' href='http://www.linkedin.com/shareArticle?url=<?php echo $url; ?>'>
-            <i class="fa fa-linkedin" aria-hidden="true"></i>
-        </a>
-        <a class="reddit btn" target='_blank' href='http://reddit.com/submit?url=<?php echo $url; ?>'>
-            <i class="fa fa-reddit-alien" aria-hidden="true"></i>
-        </a>
-        <a class="google-plus btn" target='_blank' href='https://plus.google.com/share?url=<?php echo $url; ?>'>
-            <i class="fa fa-google-plus" aria-hidden="true"></i>
-        </a>
-        <?php $image = ( has_post_thumbnail() ) ? wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' )[0] : get_first_image() ; ?>
-        <a class="pinterest btn" target='_blank' href='http://pinterest.com/pin/create/link/?url=<?php echo $url; ?>&media=<?php echo esc_url( $image ); ?>&description=<?php urlencode(the_title()) ;?>'>
-            <i class="fa fa-pinterest" aria-hidden="true"></i>
-        </a>
+        
+        <p style="display:inline-block;">
+            <button class="facebook btn social-share" data-share="facebook" >
+                <i class="fa fa-facebook" aria-hidden="true"></i> Share
+            </button>
+        </p>
+        <div class="fb-save" data-uri="<?php the_permalink(); ?>" data-size="large"></div>
+        <div class="fb-like" data-href="<?php the_permalink(); ?>" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+        <p>
+            <button class="twitter btn social-share" data-share="twitter">
+                <i class="fa fa-twitter" aria-hidden="true"></i> Tweet
+            </button>
+            <button class="linkedin btn social-share" data-share="linkedin">
+                <i class="fa fa-linkedin" aria-hidden="true"></i> share
+            </button>
+            <button class="reddit btn social-share" data-share="reddit" target='_blank' href=''>
+                <i class="fa fa-reddit-alien" aria-hidden="true"></i> reddit this!
+            </button>
+            <button class="google-plus btn social-share" data-share="google-plus">
+                <i class="fa fa-google-plus social-share" aria-hidden="true"></i> share 
+            </button>
+            <?php $image = ( has_post_thumbnail() ) ? wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' )[0] : get_first_image() ; ?>
+            <button class="pinterest btn social-share" data-share="pinterest" data-title="<?php urlencode(the_title()) ;?>" data-image="<?php echo esc_url( $image ); ?>">
+                <i class="fa fa-pinterest" aria-hidden="true"></i> Pin
+            </button>
+        
+        </p>
+        
     </div>
 <?php
 }

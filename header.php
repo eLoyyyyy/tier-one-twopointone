@@ -65,7 +65,8 @@ endif; ?>
             
                 <header class="header hide-on-med-and-down">
                     <div class="row flexbox-container">
-                        <div class="col l4 m12 center-align">
+                        <?php $lsix = ( is_active_sidebar( 'horizontal-ad-head' ) ) ? 'l4' : 'l12'; ?>
+                        <div class="col <?php echo $lsix; ?> m12 center-align">
                             <?php  
                                 $logo = get_theme_mod( 'site_logo', '' );
                                 $title_option = get_theme_mod( 'site_title_option', 'text-only' );
@@ -73,7 +74,7 @@ endif; ?>
                                 if ( $title_option == 'logo-only' && ! empty($logo) ) { ?>
                                     <div class="site-logo">
                                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                                            <img src="<?php echo esc_url( $logo ); ?>" alt="<?php bloginfo( 'name' ); ?>" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>">
+                                            <img class="responsive-img" src="<?php echo esc_url( $logo ); ?>" alt="<?php bloginfo( 'name' ); ?>" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>">
                                         </a>
                                     </div>
                                 <?php } 
@@ -101,20 +102,24 @@ endif; ?>
                                     </div>
                             <?php } ?>
                         </div>
-                        <div class="col l8 m12 valign-wrapper">
-                            <img class="responsive-img valign" src="http://www.jennifer.com/wordpress/wp-content/uploads/2016/10/460-x-40-qq288-indo.gif">
-                        </div>
+                        <?php if ( $lsix ) : ?>
+                            <div class="col l8 m12">
+                                <div class="header-ad" style="margin-top:-20px;">
+                                    <?php dynamic_sidebar( 'horizontal-ad-head' ); ?> 
+                                </div><!--header ad-->
+                            </div>
+                        <?php endif; ?> 
                     </div>
                 </header>
             </div>
                 
-                <nav class="main-nav white z-depth-0 nav-fixed white">
+                <nav class="main-nav white z-depth-0 nav-fixed white" itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <div class="container">
                         <div class="nav-wrapper">
                             <?php $logo = get_theme_mod( 'site_logo', '' );
                             if ( !empty($logo) ) : ?>
                             <a href="<?php echo home_url(); ?>" class="brand-logo hide-on-large-only black-text">
-                                <img src="<?php echo esc_url( $logo ); ?>" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>"/>
+                                <img src="<?php echo esc_url( $logo ); ?>" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>" style="width:208px;height:64px"/>
                             </a>
                             <?php endif; ?>
                             <a href="#" data-activates="mobile-demo" class="button-collapse black-text"><i class="material-icons">menu</i></a>
@@ -149,4 +154,11 @@ endif; ?>
                     </li>
                 </ul>-->
                 <?php create_materialize_submenu('primary'); ?>
+            <?php if ( is_404() ) : ?>
+            <div class="row clearfix error-image">
+                <div class="col l12 m12 s12">
+                    <img class="responsive-img four-o-four" src="<?php echo get_stylesheet_directory_uri() . '/images/error-404.png'; ?>" style="position: absolute; left: 0;">
+                </div>
+            </div>
+            <?php endif; ?>
             <div class="container">

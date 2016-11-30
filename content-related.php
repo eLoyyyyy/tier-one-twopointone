@@ -15,7 +15,7 @@ $args = array(
     'orderby' => 'rand',
     'category__in' => $cat_ids,
     'post__not_in' => array( get_the_ID() ),
-    'posts_per_page' => 3
+    'posts_per_page' => 6
 );
 
 $posts_related = new WP_Query();
@@ -25,45 +25,42 @@ if ( $posts_related->have_posts() ) :
 
 <div class="related-posts post-section">
     <div class="genpost-entry-header">
-        <h4 class="genpost-entry-title"><?php esc_html_e('Related Posts', 'tieronetwo') ?></h4>
+        <h4 class="genpost-entry-title"><?php esc_html_e('We Recommend', 'tieronetwopointone') ?></h4>
     </div>
 
     <div class="flexbox-container row clearfix">
         <?php while( $posts_related->have_posts() ) : $posts_related->the_post(); ?>
-            <article class="col l4 m6 s12" itemscope itemtype="http://schema.org/ItemPage">
-                <meta itemprop="significantLink" content="<?php echo get_permalink();?>">
-                <div class="card">
-                    <figure class="figure card-image z-depth-0" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+            <article class="col l4 m6 s12" > <!-- itemscope itemtype="http://schema.org/ItemPage" -->
+                <meta itemprop="relatedLink" content="<?php echo get_permalink();?>">
+                <div class="">
+                    <figure class="figure card-image z-depth-0" > <!-- itemprop="image" itemscope itemtype="http://schema.org/ImageObject" -->
                         <?php if (has_post_thumbnail() ) { ?>
-                        <meta itemprop="url" content="<?php the_post_thumbnail_url(); ?>">
+                        <!--  <meta itemprop="url" content="<?php the_post_thumbnail_url(); ?>"> -->
                         <?php
                             $file = wp_get_attachment_url(get_post_thumbnail_id(get_the_ID())); 
                             if (file_exists($file)) :
                                 list($width, $height, $type, $attr) = getimagesize($file);  ?>
-                                <meta itemprop="width" content="<?php echo $width; ?>">
-                                <meta itemprop="height" content="<?php echo $height; ?>">
+                                <!-- <meta itemprop="width" content="<?php echo $width; ?>">
+                                <meta itemprop="height" content="<?php echo $height; ?>"> -->
                             <?php endif; ?>
                                 <img style="height:145px" class="responsive-img" 
-                         src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" itemprop="image">
+                         src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" > <!-- itemprop="image" -->
                         <?php } else { ?>
-                        <meta itemprop="url" content="<?php echo get_first_image(); ?>">
+                        <!-- <meta itemprop="url" content="<?php echo get_first_image(); ?>"> -->
                         <?php
                             $file = get_first_image(); 
                             if (file_exists($file)) :
                                 list($width, $height, $type, $attr) = getimagesize($file);  ?>
-                                <meta itemprop="width" content="<?php echo $width; ?>">
-                                <meta itemprop="height" content="<?php echo $height; ?>">
+                                <!-- <meta itemprop="width" content="<?php echo $width; ?>">
+                                <meta itemprop="height" content="<?php echo $height; ?>"> -->
                             <?php endif; ?>
-                                <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:145px" itemprop="image" />
+                                <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:145px" /> <!-- itemprop="image" -->
                         <?php } ?>
                         <figcaption class="card-content text-center">
-                            <?php echo '<h1 class="h5">' . '<a rel="bookmark" href="' . get_permalink() . '" title="'. get_the_title() .'">' . wp_trim_words( get_the_title(), 5, ' ...') . '</a></h1>';?>
+                            <?php echo '<h1 class="h6">' . '<a rel="bookmark" href="' . get_permalink() . '" title="'. get_the_title() .'">' . get_the_title() . '</a></h1>';?>
                         </figcaption>
                     </figure>
                     
-                    <div class="card-action">
-                        <i class="fa fa-calendar"></i> <time class="date"><?php echo date_i18n( 'M d, Y', strtotime( get_the_date('Y-m-d'), false ) ); ?></time>
-                    </div>
                 </div>
             </article>
         <?php endwhile; wp_reset_postdata(); ?>

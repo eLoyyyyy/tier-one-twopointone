@@ -1,8 +1,12 @@
     </div>
 </main> 
 
-
-        <footer class="page-footer">
+        <div class="outer-container white">
+            <div class="center-align to-top palette darken-3">
+                <a href="#"><i class="fa fa-chevron-up fa-2x white-text" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <footer class="page-footer" class="http://schema.org/WPFooter">
             <div class="outer-container palette darken-3">
                 <div class="container palette darken-3">
                     <div class="row" style="display:none;">
@@ -61,7 +65,7 @@
             <div class="footer-copyright">
                 <div class="outer-container palette darken-4">
                     <div class="container palette darken-4">
-                        &copy; <?php echo tonetwo_copyright(); ?> <a href="<?php echo home_url(); ?>"><?php echo force_relative_url(); ?></a>, All Rights Reversed.
+                        &copy; <?php echo tonetwo_copyright(); ?> <a href="<?php echo home_url(); ?>" itemscope itemtype="http://schema.org/Organization"><span itemprop="name"><?php echo force_relative_url(); ?></span></a>, All Rights Reversed.
                         <div class="social-media right">
                             <a class="grey-text text-lighten-4" href="#!"><i class="fa fa-facebook"></i></a>
                             <a class="grey-text text-lighten-4" href="#!"><i class="fa fa-twitter"></i></a>

@@ -68,7 +68,7 @@ class wp_materialize_navwalker extends Walker {
         // $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
         // $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
         // $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
-        $output     .= $indent . '<li role="presentation" itemprop="name" id="nav-menu-item-'. $item->ID . '" class="' . $depth_class_names . '">';
+        $output     .= $indent . '<li role="presentation" id="nav-menu-item-'. $item->ID . '" class="' . $depth_class_names . '">';
         $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
         $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
         $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
@@ -76,10 +76,10 @@ class wp_materialize_navwalker extends Walker {
         $attributes .= ! empty( $children )         ? ' data-activates="dropdown-'. $item->ID .'" data-beloworigin="true" data-constrainwidth="false" data-alignment="right" ' : '';
         $attributes .= ! empty( $children )         ? ' class="dropdown-button black-text bold '. $depth_class_names .'"' : ' class="black-text bold '. $depth_class_names .'"';
         $item_output .= '<a itemprop="url" '. $attributes .'>';
-        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+        $item_output .= $args->link_before . '<span itemprop="name">' . apply_filters( 'the_title', $item->title, $item->ID ) . '</span>' . $args->link_after;
         
         if(!empty($children))
-        $item_output .= '<i class="material-icons right">arrow_drop_down</i>';
+        $item_output .= ' <i class="material-icons right">arrow_drop_down</i>';
         $item_output .= '</a>';
         $item_output .= $args->after;
         if(!empty($children))

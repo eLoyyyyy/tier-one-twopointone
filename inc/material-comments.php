@@ -23,16 +23,16 @@ function materialized_comment($comment, $args, $depth) {
 	}
 ?>
 	<div <?php comment_class( array( 'section', empty( $args['has_children'] ) ? '' : 'parent',) ) ?> id="comment-<?php comment_ID() ?>">
-        <article id="div-comment-<?php comment_ID() ?>" class="comment-body" itemscope itemtype="http://schema.org/UserComments">
-            <header class="comment-header vcard">
+        <article id="div-comment-<?php comment_ID() ?>" class="comment-body" itemprop="comment" itemscope itemtype="http://schema.org/Comment">
+            <header class="comment-header">
             <?php echo get_avatar( $comment, 60, '' , '' , array( 'class' => 'comment-avatar') ); ?>
                 <?php 
                     printf( __( '<cite class="comment-author" itemprop="creator" itemscope itemtype="http://schema.org/Person">%s</cite>' ), 
-                            '<span class="fn" itemprop="name"><a href="'.get_comment_author_url().'" rel="external nofollow" itemprop="url">' . get_comment_author() . '</a></span>'
+                            '<span class="fn" itemprop="name"><a href="'.get_comment_author_url().'" rel="external" itemprop="url">' . get_comment_author() . '</a></span>'
                           ); 
                 ?>
                 <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
-                    <time class="post-date updated" itemprop="commentTime" datetime="<?php comment_time('c'); ?>">
+                    <time class="post-date updated" itemprop="datePublished" datetime="<?php comment_time('c'); ?>">
                     <?php
                             /* translators: 1: date, 2: time */
                             /*printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );*/
@@ -45,7 +45,7 @@ function materialized_comment($comment, $args, $depth) {
                 <br />
             <?php endif; ?>
 
-            <div class="comment-content" itemprop="commentText">
+            <div class="comment-content" itemprop="description">
                 <?php comment_text(); ?>
             </div>
             

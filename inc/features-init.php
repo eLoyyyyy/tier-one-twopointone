@@ -5,6 +5,24 @@ if ( !defined( 'ABSPATH' ) ) :
 endif;
 
 /*Sidebar*/
+if ( !function_exists( 'tieronetwopointone_header_horizontal_ad_widget' ) ):
+    function tieronetwopointone_header_horizontal_ad_widget() {
+
+        register_sidebar( array(
+            'name' => __( 'Header Horizontal Ad Widget', 'tieronetwopointone' ),
+            'id' => 'horizontal-ad-head',
+            'before_widget' => '<section id="%1$s" class="widget %1$s">',
+            'after_widget' => '</section>',
+            'before_title'  => '<div class="widget-title-container"><h2 class="widget-title">',
+            'after_title' => '</h2></div>',
+            'description' => __( 'Horizontal Ad Widget On Header', 'tieronetwopointone' ),
+        ) );
+
+    } 
+    add_action( 'after_setup_theme', 'tieronetwopointone_header_horizontal_ad_widget' );
+endif;
+
+
 if ( !function_exists( 'tieronetwopointone_sidebar' ) ):
     function tieronetwopointone_sidebar() {
 

@@ -70,8 +70,9 @@ class ads_720x90_widget extends WP_Widget {
         <?php
         if( @$linkads || @$imgads ) {
             if( @$imgads ) {
+                $linkads = do_shortcode($linkads);
             ?>
-                <a href="<?php echo $linkads; ?>" target="<?php echo ($blnk == 'true' ? '_blank' : ''); ?>" rel="<?php echo $follow ?>"><img src="<?php echo $imgads; ?>" title="<?php echo $titleimg; ?>" alt="<?php echo $titleimg; ?>" style="width:720px; height:90px;"/></a>     
+                <a href="<?php echo $linkads; ?>" target="<?php echo ($blnk == 'true' ? '_blank' : ''); ?>" rel="<?php echo $follow ?>"><img class="responsive-img" src="<?php echo $imgads; ?>" title="<?php echo $titleimg; ?>" alt="<?php echo $titleimg; ?>" style="width:720px; height:90px;"/></a>     
             <?php
             }
         } ?>
@@ -411,13 +412,14 @@ class ads_150x150_multiple_widget extends WP_Widget {
             <div class="section-contentt">
                 <div class="row clearfix center-align">
                     <?php foreach(@$instance['ads'] as $ind => $ad) : ?>
-                    <?php $blk = $ad['blk'] ? 'true' : 'false' ?>
-                    <div class="col l6 m4 s12 ads">
-                        <a href="<?php echo $ad['link']; ?>" target="<?php echo ($blk == 'true' ? '_blank' : ''); ?>" rel="<?php echo $ad['fllw'] ?>"><img style="width:201px;height:201px" class="responsive-img" src="<?php echo $ad['img']; ?>" title="<?php echo $ad['timg']; ?>" alt="<?php echo $ad['timg']; ?>"/></a>
+                    <?php $blk = $ad['blk'] ? 'true' : 'false';
+                    $link = do_shortcode($ad['link']);?>
+                    <div class="col l6 m4 s6 ads">
+                        <a href="<?php echo $link; ?>" target="<?php echo ($blk == 'true' ? '_blank' : ''); ?>" rel="<?php echo $ad['fllw'] ?>"><img class="responsive-img" src="<?php echo $ad['img']; ?>" title="<?php echo $ad['timg']; ?>" alt="<?php echo $ad['timg']; ?>"/></a>
                     </div>
                     <!--<div class="col l6 m4 s12 ads">
                         <img class="responsive-img" src="http://placehold.it/201x201">
-                    </div>-->
+                    </div> style="width:201px;height:201px"  -->
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -463,7 +465,7 @@ class ads_150x150_multiple_widget extends WP_Widget {
                      }
 
                         $ad['img'] =  $imgads;
-                        $ad['link'] = esc_url($new_instance['linkads'][$i]);
+                        $ad['link'] = $new_instance['linkads'][$i];
                         $ad['blk'] = $new_instance['blnk'][$i];
                         $ad['fllw'] = $new_instance['follow'][$i];
                         $ad['tads'] = $new_instance['titleads'][$i];
@@ -1138,7 +1140,7 @@ class Layout_One_Widget extends Front_Page_Widget {
                                     </figure>
                                     <div class="subsection-header valign-wrapper hide-on-med-and-down" itemprop="articleBody">
                                         <div class="blur"></div>
-                                        <h2 class="h5 bold valign" itemprop="headline"><?php the_title(); ?></h2>
+                                        <h2 class="h6 bold valign" itemprop="headline"><a href="<?php get_the_permalink(); ?>" class="white-text"><?php the_title(); ?></a></h2>
                                     </div>
                                 </div>
                             </article>
@@ -1186,7 +1188,7 @@ class Layout_Two_Widget extends Front_Page_Widget {
             query_posts($args); 
             if(have_posts()) :
             ?>
-            <section class="section col s12" itemscope itemtype="http://schema.org/Blog">
+            <section class="section col s12 layout-two" itemscope itemtype="http://schema.org/Blog">
                 <div class="section-header blue-grey darken-4 clearfix">
                     <h1 class="h5 left"><?php echo get_cat_name( $cat ); ?></h1>
                     <a href="<?php echo esc_url( get_category_link( $cat ) ); ?>" class="right"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
@@ -1585,7 +1587,7 @@ class Layout_Five_Widget extends Front_Page_Widget {
             query_posts($args); 
             if(have_posts()) :
             ?>
-            <section class="section col s6" itemscope itemtype="http://schema.org/Blog">
+            <section class="section col l6 m12 s12" itemscope itemtype="http://schema.org/Blog">
                 <div class="section-header blue-grey darken-4 clearfix">
                     <h1 class="h5 left"><?php echo get_cat_name( $cat ); ?></h1>
                     <a href="<?php echo esc_url( get_category_link( $cat ) ); ?>" class="right"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
@@ -1878,7 +1880,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                     ?>
                                     <meta itemprop="inLanguage" content="<?php echo $lang_support['html'][$lang]; ?>">
                                 </header>
-                                <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                                <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="position:relative;">
         
                                     <?php if (has_post_thumbnail() ) { ?>
                                     <meta itemprop="url" content="<?php the_post_thumbnail_url(); ?>">
@@ -1906,7 +1908,13 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                             <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:474px; width:533px" itemprop="image" />
                                         </a>
                                     <?php } ?>
-
+                                    <figcaption>
+                                        <a class="white-text" href="<?php the_permalink(); ?>" itemprop="caption"><?php the_title(); ?></a>
+                                    </figcaption>
+                                    <?php
+                                    $category = get_the_category(); 
+                                    ?>
+                                    <small><a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) );?>"><?php echo $category[0]->cat_name;?></a></small>
                                 </figure>
                             </article>
                             <div class="col l7 m12 s12">
@@ -1933,7 +1941,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                     <meta itemprop="inLanguage" content="<?php echo $lang_support['html'][$lang]; ?>">
                                 </header>
                                 <div class="col l12 m12 s12">
-                                    <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                                    <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="position:relative;">
         
                                         <?php if (has_post_thumbnail() ) { ?>
                                         <meta itemprop="url" content="<?php the_post_thumbnail_url(); ?>">
@@ -1961,7 +1969,13 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                                 <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:233px; width:747px" itemprop="image" />
                                             </a>
                                         <?php } ?>
-
+                                        <figcaption>
+                                            <a class="white-text" href="<?php the_permalink(); ?>" itemprop="caption"><?php the_title(); ?></a>
+                                        </figcaption>
+                                        <?php
+                                        $category = get_the_category(); 
+                                        ?>
+                                        <small><a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) );?>"><?php echo $category[0]->cat_name;?></a></small>
                                     </figure>
                                 </div>
                             </article>   
@@ -1988,7 +2002,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                         ?>
                                         <meta itemprop="inLanguage" content="<?php echo $lang_support['html'][$lang]; ?>">
                                     </header>
-                                    <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                                    <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" style="position:relative;">
         
                                         <?php if (has_post_thumbnail() ) { ?>
                                         <meta itemprop="url" content="<?php the_post_thumbnail_url(); ?>">
@@ -2016,7 +2030,13 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                                 <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:236px; width:249px" itemprop="image" />
                                             </a>
                                         <?php } ?>
-
+                                        <figcaption>
+                                            <a class="white-text" href="<?php the_permalink(); ?>" itemprop="caption"><?php the_title(); ?></a>
+                                        </figcaption>
+                                        <?php
+                                        $category = get_the_category(); 
+                                        ?>
+                                        <small><a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) );?>"><?php echo $category[0]->cat_name;?></a></small>
                                     </figure>
                                 </article>
                             <?php endif; ?>

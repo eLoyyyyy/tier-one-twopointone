@@ -33,7 +33,7 @@ function tonetwo_copyright() {
     ");
     $output = '';
     if($copyright_dates) {
-        $copyright = $copyright_dates[0]->firstdate;
+        $copyright = '<span itemprop="copyrightYear">'.$copyright_dates[0]->firstdate.'</span>';
         if($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
             $copyright .= ' - ' . $copyright_dates[0]->lastdate;
         }
@@ -49,7 +49,7 @@ function get_first_image() {
     ob_start();
     ob_end_clean();
     $output = preg_match_all( '/<img .+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
-    $first_img = $matches[1][0]; 
+    $first_img = isset($matches[1][0]) ? $matches[1][0]: ''; 
     if ( empty( $first_img ) || is_null( $first_img ) ) :
         // defines a fallback imaage
         $first_img = get_template_directory_uri() . "/images/default.jpg";
@@ -202,7 +202,7 @@ function tieronetwo_next_prev_link()
     </ul>-->
 
     <div class="row">
-        <div class="col l6 s12">
+        <div class="col l6 m12 s12">
             <div class="card horizontal">
                 <div class="card-image">
                     <img class="responsive-img" style="width:100px;height:112px;" src="<?php echo wp_get_attachment_url(get_post_thumbnail_id($prev_post->ID)) ;?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'">
@@ -216,7 +216,7 @@ function tieronetwo_next_prev_link()
                 </div>
             </div>
         </div>
-        <div class="col l6 s12">
+        <div class="col l6 m12 s12">
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content">

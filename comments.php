@@ -101,18 +101,20 @@ $replyargs = array(
 ?>
 <div id="comments" class="comments-area">
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title">
+		<h2 class="h5 comments-title">
 			 <a class="btn-floating btn-large waves-effect waves-light green right" href="<?php echo $commtarget; ?>"><i class="fa fa-plus" style="vertical-align: middle;" aria-hidden="true"></i></a>
 			<?php
 				printf( _nx( 'One comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'materialized' ),
 					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
 			?>
 		</h2>
-        <div class="comment-form section grey lighten-4">
-            <?php comment_form($commentargs); ?>
+        <div class="comment-form card section grey lighten-4">
+            <div class="card-content">
+                <?php comment_form($commentargs); ?>
+            </div>
         </div>
         <div class="divider"></div> 
-		<div class="comment-list" itemscope itemtype="http://schema.org/UserComments">
+		<div class="comment-list" > <!-- itemscope itemtype="http://schema.org/UserComments" -->
 			<?php
 				wp_list_comments($replyargs);
 			?>
