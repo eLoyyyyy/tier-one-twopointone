@@ -6,8 +6,6 @@ html {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-    
-    font-size:16px;
 }
 *, *:before, *:after {
 	-webkit-box-sizing: inherit;
@@ -913,7 +911,7 @@ color:#47C2DC;
 
 .tagcloud a:hover {
 	background-color: #999;
-	color: #c3251d;
+	color: #ffffff;
 }
 
 section[class*="recent-posts"] ul li,

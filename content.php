@@ -128,6 +128,22 @@ endif;
                             <?php the_tags('<ul class="list-inline black-border"><li>','</li><li>','</li></ul>'); ?>
                         <?php endif; ?>
                     </section>
+                    
+                    <?php
+                        get_template_part( 'content', 'related' ); //related post
+                    ?>
+
+                    <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="5" data-width="100%"></div>
+
+
+                    <div class="hide-on-med-and-down">
+                        <?php
+                            if ( comments_open() || '0' != get_comments_number() )
+                                 comments_template();              
+                        ?>
+                    </div>
+
+                    <?php tieronetwo_next_prev_link();?> 
                 </div>
             </div>
             <div class="col l4 m12 s12">
@@ -135,25 +151,6 @@ endif;
             </div>
         </div>
     </article>
-        <div class="row">
-            <div class="col l8 m12 s12">
-                <?php
-                    get_template_part( 'content', 'related' ); //related post
-                ?>
-                
-                <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="5" data-width="100%"></div>
-                
-                
-                <div class="hide-on-med-and-down">
-                    <?php
-                        if ( comments_open() || '0' != get_comments_number() )
-                             comments_template();              
-                    ?>
-                </div>
-                
-                <?php tieronetwo_next_prev_link();?> 
-            </div>
-        </div>
 </div>
 
         

@@ -65,7 +65,7 @@ endif; ?>
             
                 <header class="header hide-on-med-and-down">
                     <div class="row flexbox-container">
-                        <?php $lsix = ( is_active_sidebar( 'horizontal-ad-head' ) ) ? 'l4' : 'l12'; ?>
+                        <?php $lsix = ( is_active_sidebar( 'horizontal-ad-head' ) ) ? 'l3' : 'l12'; ?>
                         <div class="col <?php echo $lsix; ?> m12 center-align">
                             <?php  
                                 $logo = get_theme_mod( 'site_logo', '' );
@@ -103,7 +103,7 @@ endif; ?>
                             <?php } ?>
                         </div>
                         <?php if ( $lsix ) : ?>
-                            <div class="col l8 m12">
+                            <div class="col l9 m12">
                                 <div class="header-ad" style="margin-top:-20px;">
                                     <?php dynamic_sidebar( 'horizontal-ad-head' ); ?> 
                                 </div><!--header ad-->

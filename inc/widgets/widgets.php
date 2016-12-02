@@ -1444,7 +1444,7 @@ class Layout_Four_Widget extends Front_Page_Widget {
                                 </header>
                                 <div class="col s12">
                                     <div class="s2__subs4 row clearfix">
-                                        <div class="subsection-header col l5 m5 s12">
+                                        <div class="subsection-header col l5 m12 s12">
                                             <figure class="figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
         
                                                 <?php if (has_post_thumbnail() ) { ?>
@@ -1472,7 +1472,7 @@ class Layout_Four_Widget extends Front_Page_Widget {
 
                                             </figure>
                                         </div>
-                                        <div class="subsection-content col l7 m7 s12" itemprop="articleBody">
+                                        <div class="subsection-content col l7 m12 s12" itemprop="articleBody">
                                             <h2 class="h5 bold" itemprop="headline"><?php the_title(); ?></h2>
                                             <span style="font-size: 0.7rem">Posted on <?php the_time('F j, Y') ?> by <?php the_author(); ?></span>
                                             <p class="hide-on-med-and-down"><?php echo wp_trim_words( get_the_excerpt(), 25, ' ...' ) ?></p>
@@ -1628,7 +1628,7 @@ class Layout_Five_Widget extends Front_Page_Widget {
                                         <?php } ?>
 
                                     </figure>
-                                    <h2 class="h5 bold"><?php the_title(); ?></h2>
+                                    <h2 class="h5 bold" itemprop="headline"><?php the_title(); ?></h2>
                                     <span style="font-size: 0.7rem">Posted on <?php the_time('F j, Y') ?> by <?php the_author(); ?></span>
                                 </div>
                                 <div class="subsection-content hide-on-small-only">
@@ -1863,6 +1863,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                 <link itemprop="mainEntityOfPage" href="<?php echo esc_url( get_permalink() );?>" />
                                 <header class="entry-meta site-meta-t">
                                     <meta itemprop="author" content="<?php the_author();?>">
+                                    <meta itemprop="headline" content="<?php  the_title(); ?>">
                                     <meta itemprop="datePublished" content="<?php the_time('c'); ?> ">
                                     <meta itemprop="dateModified" content="<?php the_modified_time('c'); ?>">
                                     <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1892,7 +1893,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                             <meta itemprop="height" content="<?php echo $height; ?>">
                                         <?php endif; ?>
                                         <a href="<?php the_permalink(); ?>">
-                                            <img style="height:474px; width:533px" class="responsive-img" 
+                                            <img style="height:474px;" class="responsive-img" 
                                      src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" itemprop="image">
                                         </a>
                                     <?php } else { ?>
@@ -1905,7 +1906,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                             <meta itemprop="height" content="<?php echo $height; ?>">
                                         <?php endif; ?>
                                         <a href="<?php the_permalink(); ?>">
-                                            <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:474px; width:533px" itemprop="image" />
+                                            <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:474px;" itemprop="image" />
                                         </a>
                                     <?php } ?>
                                     <figcaption>
@@ -1923,6 +1924,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                 <link itemprop="mainEntityOfPage" href="<?php echo esc_url( get_permalink() );?>" />
                                 <header class="entry-meta site-meta-t">
                                     <meta itemprop="author" content="<?php the_author();?>">
+                                    <meta itemprop="headline" content="<?php  the_title(); ?>">
                                     <meta itemprop="datePublished" content="<?php the_time('c'); ?> ">
                                     <meta itemprop="dateModified" content="<?php the_modified_time('c'); ?>">
                                     <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1953,7 +1955,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                                 <meta itemprop="height" content="<?php echo $height; ?>">
                                             <?php endif; ?>
                                             <a href="<?php the_permalink(); ?>">
-                                                <img style="height:233px; width:747px" class="responsive-img" 
+                                                <img style="height:233px;" class="responsive-img" 
                                          src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" itemprop="image">
                                             </a>
                                         <?php } else { ?>
@@ -1966,7 +1968,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                                 <meta itemprop="height" content="<?php echo $height; ?>">
                                             <?php endif; ?>
                                             <a href="<?php the_permalink(); ?>">
-                                                <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:233px; width:747px" itemprop="image" />
+                                                <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:233px;" itemprop="image" />
                                             </a>
                                         <?php } ?>
                                         <figcaption>
@@ -1985,6 +1987,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                     <link itemprop="mainEntityOfPage" href="<?php echo esc_url( get_permalink() );?>" />
                                     <header class="entry-meta site-meta-t">
                                         <meta itemprop="author" content="<?php the_author();?>">
+                                        <meta itemprop="headline" content="<?php  the_title(); ?>">
                                         <meta itemprop="datePublished" content="<?php the_time('c'); ?> ">
                                         <meta itemprop="dateModified" content="<?php the_modified_time('c'); ?>">
                                         <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2014,7 +2017,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                                 <meta itemprop="height" content="<?php echo $height; ?>">
                                             <?php endif; ?>
                                             <a href="<?php the_permalink(); ?>">
-                                                <img style="height:236px; width:249px" class="responsive-img" 
+                                                <img style="height:236px;" class="responsive-img" 
                                          src="<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" itemprop="image">
                                             </a>
                                         <?php } else { ?>
@@ -2027,7 +2030,7 @@ class Layout_Seven_Widget extends Front_Page_Widget {
                                                 <meta itemprop="height" content="<?php echo $height; ?>">
                                             <?php endif; ?>
                                             <a href="<?php the_permalink(); ?>">
-                                                <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:236px; width:249px" itemprop="image" />
+                                                <img class="responsive-img" src="<?php echo get_first_image(); ?>" onerror="javascript:this.src='<?php echo get_template_directory_uri() . "/images/default.jpg"; ?>'" style="height:236px;" itemprop="image" />
                                             </a>
                                         <?php } ?>
                                         <figcaption>

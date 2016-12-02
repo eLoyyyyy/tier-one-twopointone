@@ -149,7 +149,7 @@ function create_materialize_submenu( $theme_location ) {
             $menu_list .= '<li>';
                 $menu_list .= '<div class="userView" style="height:'.$height.'px;">';
                     $menu_list .= '<div class="background center-align" >';
-                        $menu_list .= '<img src="'.$logo.'">';
+                        $menu_list .= '<img class="responsive-img" src="'.$logo.'">';
                     $menu_list .= '</div>';
                 $menu_list .= '</div>';
             $menu_list .= '</li>';
