@@ -176,7 +176,7 @@ function create_materialize_submenu( $theme_location ) {
                     $menu_list .= '<li class="no-padding">' ."\n";
                         $menu_list .= '<ul class="collapsible collapsible-accordion">' ."\n";
                             $menu_list .= '<li>' ."\n";
-                            $menu_list .= '<a href="'.$menu_item->url.'" class="collapsible-header bold">'.$menu_item->title.'</a>';
+                            $menu_list .= '<a href="'.$menu_item->url.'" style="font-weight:bold;" class="collapsible-header">'.$menu_item->title.' <i class="fa fa-caret-down" aria-hidden="true"></i></a>';
                             $menu_list .= '<div class="collapsible-body">';
                                 $menu_list .= '<ul>';
                                     $menu_list .= implode( "\n", $menu_array );

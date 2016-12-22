@@ -116,7 +116,7 @@ $replyargs = array(
         <div class="divider"></div> 
 		<div class="comment-list" > <!-- itemscope itemtype="http://schema.org/UserComments" -->
 			<?php
-				wp_list_comments($replyargs);
+				wp_list_comments($replyargs);
 			?>
 		</div><!-- .comment-list -->
  
